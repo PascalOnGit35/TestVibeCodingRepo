@@ -119,11 +119,32 @@ Don't change anything else in the project or touch the underlying logic.
 
 ## Reusable techniques learned
 
-- _____
-- _____
+- Giving names to each Screen for clarity and so that the AI does not change anything in the other screens.
+- Creating two screens with a logic between the two.
+- Simulating real-world conditions (skeleton and sand-clock while loading the data).
+- Being able to simulate errors.
 
 ## What broke (and the fix)
 
 _Where a single mega-prompt failed and chaining fixed it._
 
-_____
+The 3rd prompt in the chain created an Error in Lovable.   
+I guessed there were contradictions related to the "do NOT do ..." elements which were split.  I reworded the point 5. to this and it worked fine.     
+
+5. Preserve the prototype philosophy
+
+Do NOT:
+- add charts to the overview
+- add large tables to the overview
+- introduce filter bars
+- introduce dashboard complexity
+- change anything else in the project 
+- touch the underlying logic.
+The overview must remain simple and decision-oriented.
+
+DESIGN INTENT
+The user should be able to answer the question:
+"Why are you recommending this action?"
+without leaving the first screen, while still having the option to navigate to the detailed analysis page for deeper investigation.
+
+
