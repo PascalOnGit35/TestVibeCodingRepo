@@ -6,7 +6,7 @@
 
 _The working, shareable link that survives real users._
 
-_____
+https://insight-first-dash.lovable.app/
 
 ## Data schema
 
@@ -28,6 +28,7 @@ Operational Guidance (network_headlines, network_recommendations, reasons): Read
 Work Shifts (shifts): Operators create, read, and update only their own shifts; Supervisors and Admins can audit all operator shifts.
 Decision Logs (action_acknowledgements): Operators submit and read their own logged site actions; Supervisors and Admins can inspect all team actions.
 Data Deletion: Regular operators have zero delete privileges across operational data; records are append-only.
+
 Experiment Access Rules (Telemetry & Hypothesis)
 Experiment Baselines & Quotes (experiment_baselines, experiment_quotes): Readable by provisioned ops team members; editable only by Admins.
 Experiment Configuration (experiment_config): Thresholds (15s bounce, 6-click target) are readable by provisioned users; only Admins can adjust criteria.
@@ -41,10 +42,10 @@ Audit Isolation: Experiment telemetry cannot modify product operational state (s
 |---|---|---|
 | Empty / first-run state | A newly registered user has no linked_operator_name yet, or their linked name was renamed/deleted from the operators table. | Add a fallback state on /shiftstart: if linked_operator_name is null or invalid, force an explicit selection from active operators before enabling "Start shift". Store a foreign key reference or validated match against operators.operator_id rather than a loose string. |
 | Bad / malicious input | If an RLS policy rejects an insert or the network drops, the optimistic row remains visible on screen while only throwing a silent console error. | Add transactional error rollback with user-facing toast alerts (e.g., via sonner): if Supabase returns a 403 Forbidden or network failure, roll back the UI list and notify the operator immediately. |
-| Failure / offline | _____ | Toaster pop up to ask to retry.  Then restore and toaster "Recorded". |
+| Failure / offline | Freeze. | Toaster pop up on network failure to ask to "Retry".  Then restore and toaster "Recorded". |
 
 ## Stress test results
 
 _What you threw at it, and what held / broke._
 
-_____
+5 clicks lead to a single record.
